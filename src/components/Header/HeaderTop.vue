@@ -1,28 +1,29 @@
 <template>
   <div id="title" class="r-n-sb-c">
     <div id="company" class="r-n-fs-c">
-      <img src="../../../static/images/user.jpg" alt="" width="50" height="50">
-      <div id="name" class="c-n-fs-c">
-        <p>北京嘉瑞世飞制冷有限公司</p>
-        <p>Beijing Jiarui Shifei Refrigeration Limited company</p>
+      <img :src="logo_img" alt="" width="50" height="50">
+      <div id="name" class="c-n-c-c">
+        <p>{{main_title}}</p>
+        <p class="">{{main_title_t}}</p>
       </div>
     </div>
     <div id="connect" class="r-n-fs-c">
-      <img src="../../../static/images/connect.png" alt="" width="30" height="30">
+      <img :src="phone_img" alt="" width="30" height="30">
       <div id="phone" class="r-n-fs-c">
-        <p>详询热线 :13901228161 &nbsp;&nbsp;&nbsp;<span>王经理</span></p>
+        <p>{{connect_content}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {mapGetters} from "vuex"
+  import {mapGetters,mapState} from "vuex"
 	export default {
-		name: "HeaderTop",
     computed:{
-      ...mapGetters(["main_width","main_height"])
-    }
+      ...mapState(["main_title","main_title_t","connect","connect_name","logo_img","phone_img","connect_content"]),
+      ...mapGetters(["main_width",""]),
+    },
+    name: "HeaderTop"
 	}
 </script>
 
@@ -32,30 +33,40 @@
     height: 60px;
     line-height: 60px;
     background: #ffffff;
+    margin-top: 10px;
   }
 
   #company {
     height: 60px;
+    cursor: pointer;
+  }
+  #company>img{
+    border-radius: 5px;
   }
 
   #name {
     font-weight: 700;
     width: 380px;
+    cursor: pointer;
   }
 
   #name p:first-child {
     font-size: 24px;
-    height: 40px;
-    line-height: 40px;
+    height: 30px;
+    line-height: 30px;
+    color: #424242;
+    font-weight: 700;
   }
 
   #name p:last-child {
     font-size: 14px;
     height: 20px;
+    color: #9E9E9E;
     line-height: 20px;
   }
 
   #connect{
+    cursor: pointer;
     font-size: 16px;
   }
   #phone p{

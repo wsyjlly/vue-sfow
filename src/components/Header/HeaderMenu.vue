@@ -1,9 +1,12 @@
 <template>
-  <div id="menu" class="r-n-c-c">
-    <div id="menu_content">
-      <div class="menu_item c-n-c-c">
-        <p>公司首页</p>
-        <p>HOME</p>
+  <div id="menu" class="r-n-c-c theme_bg"  :style="{width:screen_width+'px'}">
+    <div id="menu_content" class="r-n-sa-c" :style="{width:main_width+'px'}">
+      <div class="menu_item item-edr-fill c-n-c-c"
+           :class="item===current_menu ? 'current_menu_item':''"
+           v-for="(item,index) in menu"
+           :key="item.text_up" @click="setCurrentMenu(index)">
+        <p>{{item.text_up}}</p>
+        <p>{{item.text_down}}</p>
       </div>
     </div>
   </div>
@@ -11,8 +14,16 @@
 
 
 <script>
+  import {mapGetters,mapState,mapActions} from "vuex"
 	export default {
-		name: "HeaderMenu"
+		name: "HeaderMenu",
+    computed:{
+      ...mapState(["screen_width","screen_height","menu","current_menu"]),
+      ...mapGetters(["main_width","main_height"]),
+    },
+    methods:{
+      ...mapActions(["setCurrentMenu"])
+    }
 	}
 </script>
 
@@ -20,21 +31,30 @@
   #menu{
     width: 100%;
     height: 60px;
+    margin-top: 10px;
   }
   #menu_content{
     /*width: 1200px;*/
     height: 60px;
   }
   .menu_item{
-    width: 80px;
+    width: 100px;
     height: 60px;
-    background: #007aff;
-    font-weight: 700;
+    /*font-weight: 700;*/
+  }
+  .current_menu_item{
+    background: #4CAF50;
+  }
+  .menu_item:hover{
+    background: #66BB6A;
+    cursor: pointer;
   }
   .menu_item p:first-child{
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 25px;
   }
   .menu_item p:last-child{
     font-size: 12px;
+    line-height: 15px;
   }
 </style>
