@@ -1,5 +1,5 @@
 <template>
-  <div id="banner" class="c-n-c-c":style="{width:screen_width+'px',height:screen_height*0.7+'px'}">
+  <div id="banner" class="c-n-c-c":style="{width:screen_width-2+'px',height:screen_height*0.7+'px'}">
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="item in banner" :style="{backgroundImage:'url('+item+')',width:screen_width*0.4+'px',height:screen_width*0.25+'px'}"></div>
@@ -22,9 +22,13 @@
       ...mapGetters(["main_width","main_height"])
     },
     mounted:function () {
-      let swiper = new this.swiper('.swiper-container', {
+      new this.swiper('.swiper-container', {
         effect: 'coverflow',
         loop:true,
+        autoplay:{
+          delay:3000,
+          disableOnInteraction:false
+        },
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 'auto',
@@ -37,6 +41,10 @@
         },
         pagination: {
           el: '.swiper-pagination',
+          clickable: true,
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + '</span>';
+          },
         },
         navigation: {
           nextEl: '.swiper-button-next',
@@ -46,8 +54,7 @@
     }
   }
 </script>
-
-<style>
+<style scoped>
   #banner {
     background: #FAFAFA;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -56,6 +63,8 @@
     margin: 0;
     padding: 0;
   }
+</style>
+<style>
   .swiper-container {
     width: 100%;
     padding-top: 50px;
@@ -66,5 +75,20 @@
     background-size: cover;
     width: 700px;
     height: 500px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color:#000;
+    opacity: 1;
+    background: rgba(0,0,0,0.2);
+  }
+  .swiper-pagination-bullet-active {
+    color:#fff;
+    background: #007aff;
   }
 </style>
