@@ -51,6 +51,7 @@
   }
 
   #name p:first-child {
+    letter-spacing: 2px;
     font-size: 24px;
     height: 30px;
     line-height: 30px;

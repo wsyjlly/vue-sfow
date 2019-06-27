@@ -4,7 +4,7 @@
       <div class="menu_item item-edr-fill c-n-c-c"
            :class="item===current_menu ? 'current_menu_item':''"
            v-for="(item,index) in menu"
-           :key="item.text_up" @click="setCurrentMenu(index)">
+           :key="item.text_up" @click="selectMenu(index)">
         <p>{{item.text_up}}</p>
         <p>{{item.text_down}}</p>
       </div>
@@ -22,7 +22,13 @@
       ...mapGetters(["main_width","main_height"]),
     },
     methods:{
-      ...mapActions(["setCurrentMenu"])
+      ...mapActions(["setCurrentMenu","init"]),
+      selectMenu(index){
+        let router = ["one","two","three","four","five","six","seven","eight","nine"];
+        let that = this;
+        this.setCurrentMenu(index);
+        that.$router.push(router[index]);
+      },
     }
 	}
 </script>
@@ -34,6 +40,7 @@
     margin-top: 10px;
   }
   #menu_content{
+    background: #A5D6A7;
     /*width: 1200px;*/
     height: 60px;
   }
@@ -50,6 +57,7 @@
     cursor: pointer;
   }
   .menu_item p:first-child{
+    letter-spacing: 1px;
     font-size: 16px;
     line-height: 25px;
   }

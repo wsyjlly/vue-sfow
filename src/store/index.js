@@ -1,6 +1,7 @@
 /*Vuex*/
 import Vue from '../../static/frames/vue'
 import Vuex from '../../static/frames/vuex'
+import one from './modules/one'
 import createLogger from 'vuex/dist/logger'
 
 
@@ -12,12 +13,17 @@ export default new Vuex.Store({
     screen_height:0,
     name:"",
     password:"",
-    logo_img:"../../../static/images/user.jpg",
-    phone_img:"../../../static/images/connect.png",
+    logo_img:"http://47.102.210.175/uploadFiles/other/user.jpg",
+    phone_img:"http://47.102.210.175/uploadFiles/other/connect.png",
     main_title : "北京嘉瑞世飞制冷有限公司",
     main_title_t : "Beijing Jiarui Shifei Refrigeration Limited company",
-    connect_content:"详询热线 : 13901228161 王经理",
-    current_menu:{},
+    connect_content:"详询热线 : 13901228161 刘经理",
+    current_menu:{
+      id:"",
+      isSelected:true,
+      text_up:"公司首页",
+      text_down:"HOME",
+    },
     menu:[
       {
         id:"",
@@ -73,39 +79,17 @@ export default new Vuex.Store({
         text_up:"联系我们",
         text_down:"CONTACT US",
       },
-    ],
-    banner:[
-      /*"http://lorempixel.com/1200/1200/nature/1",
-      "http://lorempixel.com/1200/1200/nature/2",
-      "http://lorempixel.com/1200/1200/nature/3",
-      "http://lorempixel.com/1200/1200/nature/4",
-      "http://lorempixel.com/1200/1200/nature/5",
-      "http://lorempixel.com/1200/1200/nature/6",
-      "http://lorempixel.com/1200/1200/nature/7",
-      "http://lorempixel.com/1200/1200/nature/8",
-      "http://lorempixel.com/1200/1200/nature/9",
-      "http://lorempixel.com/1200/1200/nature/10",*/
-      "../../../static/images/banner/1.jpg",
-      "../../../static/images/banner/2.jpg",
-      "../../../static/images/banner/3.jpg",
-      "../../../static/images/banner/4.jpg",
-      "../../../static/images/banner/5.jpg",
-      "../../../static/images/banner/6.jpg",
-      "../../../static/images/banner/7.jpg",
-      "../../../static/images/banner/8.jpg",
-      "../../../static/images/banner/9.jpg",
-      "../../../static/images/banner/10.jpg",
     ]
   },
   getters:{
     main_width : state => {
       let w = state.screen_width;
       if (w<=1200){
-        return state.screen_width*0.9;
+        return 1000;
       }else if (w>1200&&w<=1500){
         return state.screen_width*0.85;
       }else if (w>1500){
-        return 1200;
+        return 1300;
       }
 
     },
@@ -122,9 +106,13 @@ export default new Vuex.Store({
     setCurrentMenu({commit,state},index){
       commit("UPDATE_CURRENT_MENU",index);
     },
-    init({commit}){
-      commit("UPDATE_CURRENT_MENU",0);
+    init({commit},index){
+      let i = index===undefined ? 0:index;
+      commit("UPDATE_CURRENT_MENU",i);
     }
+  },
+  modules: {
+    one,
   },
   strict: false,
   plugins: [createLogger()]

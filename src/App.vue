@@ -1,7 +1,8 @@
 <template>
-  <div id="app" :style="{width:screen_width+'px',height:screen_height+'px'}" class="c-n-fs-c">
+  <div id="app" :style="{width:screen_width+'px'}" class="c-n-fs-c">
     <Header/>
-    <router-view/>
+    <router-view />
+    <Bottom/>
   </div>
 </template>
 
@@ -9,23 +10,42 @@
 import Header from "./components/Header";
 import HeaderMenu from "./components/Header/HeaderMenu";
 import {mapState} from "vuex"
+import Bottom from "./components/Bottom";
 export default {
   name: 'App',
-  components: {HeaderMenu, Header},
+  components: {Bottom, HeaderMenu, Header},
   computed:{
     ...mapState(["screen_width","screen_height"])
   },
   created:function () {
-    this.setWindowSize();
+    let scrollWidth = this.getScrollWidth()===0 ? 17:this.getScrollWidth();
+    this.setWindowSize(scrollWidth);
     window.onresize = ()=>{
-      this.setWindowSize();
+      this.setWindowSize(scrollWidth);
     }
   },
+
   methods:{
-    setWindowSize () {
-      this.$store.state.screen_height = window.innerHeight<=500? 500:window.innerHeight;
-      this.$store.state.screen_width = window.innerWidth<=1200? 1200:window.innerWidth;
+    setWindowSize (scrollWidth) {
+      this.$store.state.screen_height = window.innerHeight<=500 ? 500:window.innerHeight;
+      this.$store.state.screen_width = window.innerWidth<=1200 ? 1200:window.innerWidth-scrollWidth;
     },
+    getScrollWidth(){
+      let element = document.getElementsByTagName("body");
+      let outer = document.createElement("div");
+      let inner = document.createElement("div");
+      let width;
+      outer.appendChild(inner);
+      element[0].appendChild(outer);
+      outer.style.width = "100px";
+      outer.style.height = "100px";
+      outer.style.overflow = "auto";
+      inner.style.width = "200px";
+      inner.style.height = "100px";
+      width = outer.offsetWidth - outer.clientWidth
+      element[0].removeChild(outer);
+      return width;
+    }
 
   }
 }
@@ -33,7 +53,8 @@ export default {
 
 <style>
   *{
-    font-family: "Adobe 仿宋 Std R", Avenir, Helvetica, Arial,sans-serif;
+    font-family: "微软雅黑",Arial, "宋体", Helvetica, sans-serif, Verdana,
+    "Adobe 仿宋 Std R", Avenir, Helvetica, Arial,sans-serif;
   }
   #app {
     -webkit-font-smoothing: antialiased;
@@ -43,7 +64,7 @@ export default {
   }
 
   .theme_bg{
-    background: #A5D6A7;
+    background: #C8E6C9;
   }
   .theme_bg2{
     background: #4CAF50;
