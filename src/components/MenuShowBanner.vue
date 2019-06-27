@@ -9,14 +9,14 @@
     <div id="menu_banner_container" class="r-n-fe-fs" :style="{width:main_width*0.8+'px',height:main_width*0.3+'px'}">
       <div class="swiper-container swiper-container-m" :style="{width:main_width*0.8+'px',height:main_width*0.3+'px'}">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" style="background-image:url(../../static/images/qiduo.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(../../static/images/screen.png)"></div>
-          <div class="swiper-slide" style="background-image:url(../../static/images/306226.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(../../static/images/qiduo.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(../../static/images/screen.png)"></div>
-          <div class="swiper-slide" style="background-image:url(../../static/images/516.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(../../static/images/306226.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(../../static/images/516.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/2.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/3.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/4.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/5.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/6.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/7.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/8.jpg)"></div>
+          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/9.jpg)"></div>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination swiper-pagination-m"></div>

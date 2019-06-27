@@ -1,9 +1,9 @@
 <template>
-  <div id="banner" class="c-n-c-c" :style="{width:screen_width+'px',height:screen_width*0.4+'px'}">
-    <div class="swiper-container1 r-n-c-c swiper-container" :style="{width:screen_width+'px',height:screen_width*0.4+'px'}">
+  <div id="banner" class="c-n-c-c" :style="{width:screen_width+'px',height:screen_width*0.45+'px'}">
+    <div class="swiper-container1 r-n-c-c swiper-container" :style="{width:screen_width+'px',height:screen_width*0.45+'px'}">
       <div class="swiper-wrapper" >
-        <div class="swiper-slide" v-for="item in banner" :style="{width:screen_width*0.5+'px',height:screen_width*0.3+'px'}">
-          <img :src="item" :style="{width:screen_width*0.5+'px',height:screen_width*0.3+'px'}">
+        <div class="swiper-slide" v-for="item in banner" :style="{width:screen_width*0.6+'px',height:screen_width*0.36+'px'}">
+          <img :src="item" :style="{width:screen_width*0.6+'px',height:screen_width*0.36+'px'}">
           <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
         </div>
       </div>
@@ -51,10 +51,6 @@
         },
         pagination: {
           el: '.swiper-pagination1',
-          clickable: true,
-          renderBullet: function (index, className) {
-            return '<span class="' + className + '">' + (index + 1) + '</span>';
-          },
         },
         navigation: {
           nextEl: '.swiper-button-next1',
@@ -70,7 +66,7 @@
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 14px;
     color:#000;
-    margin-top: 60px;
+    /*margin-top: 60px;*/
     padding: 0;
   }
 
@@ -104,18 +100,5 @@
 </style>
 <style>
 
-  .swiper-pagination-bullet {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color:#000;
-    opacity: 1;
-    background: rgba(0,0,0,0.2);
-  }
-  .swiper-pagination-bullet-active {
-    color:#fff;
-    background: #007aff;
-  }
+
 </style>

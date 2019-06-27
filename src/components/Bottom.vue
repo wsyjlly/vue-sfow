@@ -2,27 +2,27 @@
 	<div id="bottom" class="c-n-c-c" :style="{width:screen_width+'px',height:screen_width*0.3+'px'}">
     <div class="r-n-c-c bottom_container" :style="{width:main_width+'px',height:main_width*0.2+'px'}">
       <div class="r-n-sb-c" :style="{width:main_width*0.24+'px',height:main_width*0.2+'px'}">
-        <img src="../../static/images/code.jpg" alt="" :width="main_width*0.1" :height="main_width*0.1">
+        <img src="http://47.102.210.175/uploadFiles/other/code.jpg" alt="" :width="main_width*0.1" :height="main_width*0.1">
         <div class="c-n-sb-fs" :style="{width:main_width*0.12+'px',height:main_width*0.1+'px'}">
           <div class="c-n-fs-fs" :style="{width:main_width*0.12+'px'}">
             <p>手机网站</p>
             <p>扫描访问手机网站</p>
           </div>
           <div class="r-n-fs-c" :style="{width:main_width*0.12+'px'}">
-            <img src="../../static/images/phone.png" alt="" :width="main_width*0.03" :height="main_width*0.03">
+            <img src="http://47.102.210.175/uploadFiles/other/phone.png" alt="" :width="main_width*0.03" :height="main_width*0.03">
             <p>手机网站</p>
           </div>
         </div>
       </div>
       <div class="r-n-sb-c" :style="{width:main_width*0.24+'px',height:main_width*0.2+'px'}">
-        <img src="../../static/images/code.jpg" alt="" :width="main_width*0.1" :height="main_width*0.1">
+        <img src="http://47.102.210.175/uploadFiles/other/code.jpg" alt="" :width="main_width*0.1" :height="main_width*0.1">
         <div class="c-n-sb-fs" :style="{width:main_width*0.12+'px',height:main_width*0.1+'px'}">
           <div class="c-n-fs-fs" :style="{width:main_width*0.12+'px'}">
             <p>微信</p>
             <p>微信公众平台</p>
           </div>
           <div class="r-n-fs-c" :style="{width:main_width*0.12+'px'}">
-            <img src="../../static/images/wechat.png" alt="" :width="main_width*0.03" :height="main_width*0.03">
+            <img src="http://47.102.210.175/uploadFiles/other/wechat.png" alt="" :width="main_width*0.03" :height="main_width*0.03">
             <p>&nbsp;&nbsp;扫描关注</p>
           </div>
         </div>
