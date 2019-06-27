@@ -51,10 +51,10 @@
     /*height: 100px;*/
     /*background: #E8F5E9;*/
     /*margin-top: 300px;*/
-    margin-bottom: 150px;
+    margin-bottom: 30px;
   }
   #m_title{
-    margin-top: 145px;
+    margin-top: 30px;
     margin-bottom: 45px;
   }
   #m_name{

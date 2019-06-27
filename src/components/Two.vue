@@ -38,6 +38,7 @@
     font-size: 36px;
     line-height: 50px;
     padding: 60px 0;
+    text-align: center;
   }
   #content>p{
     text-align: left;

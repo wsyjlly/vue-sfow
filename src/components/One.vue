@@ -27,6 +27,7 @@
   #main {
     font-size: 14px;
     font-family: Arial, "宋体";
+    text-align: center;
   }
 
 

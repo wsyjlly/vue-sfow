@@ -8,7 +8,7 @@
       <div class="swiper-container3 swiper-container"  :style="{width: main_width+'px',height: main_width*0.3+'px'}">
         <div class="swiper-wrapper">
           <div class="swiper-slide c-n-c-c" v-for="(item,index) in module3" :style="{width: main_width*0.3+'px',height: main_width*0.3+'px',backgroundImage:'url('+item.img_url+')'}">
-            <div class="s_content c-n-fs-c" :style="{width: main_width*0.3-8+'px',height: main_width*0.3-8+'px'}">
+            <div class="s_content c-n-fs-c" :style="{width: main_width*0.32+'px',height: main_width*0.3+'px'}">
               <div>{{item.title}}</div>
               <div>{{item.detail}}</div>
             </div>
@@ -50,7 +50,7 @@
 
 <style scoped>
   #one-module3{
-    margin-bottom: 150px;
+    margin-bottom: 30px;
     /*height: 100px;*/
     /*background: #E8F5E9;*/
   }
@@ -103,6 +103,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    cursor: pointer;
   }
   .swiper-slide {
     background-position: center;

@@ -45,7 +45,7 @@
     /*background: #E8F5E9;*/
   }
   #m_title{
-    margin-top: 150px;
+    margin-top: 30px;
   }
   #m_name{
     margin-top: 45px;

@@ -59,7 +59,7 @@ export default {
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    /*text-align: center;*/
     color: #2c3e50;
   }
 
@@ -72,4 +72,9 @@ export default {
   .theme_color{
     color: #1E88E5;
   }
+
+  .shadow:hover{
+    box-shadow: 3px -3px 10px 3px rgba(0,0,0,0.5);
+  }
+
 </style>

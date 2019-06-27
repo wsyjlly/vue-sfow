@@ -2,7 +2,7 @@
 	<div id="header" class="c-n-fs-c" :style="{width:main_width+'px'}">
     <HeaderTop/>
     <HeaderMenu/>
-    <MenuShowBanner v-show="menu.indexOf(current_menu)>0"/>
+    <MenuShowBanner v-show="menu.indexOf(current_menu)!==0"/>
   </div>
 </template>
 

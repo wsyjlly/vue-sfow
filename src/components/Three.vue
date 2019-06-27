@@ -5,7 +5,7 @@
       <!--<div id="m_style"><span>——</span> &nbsp;&nbsp; WHAT WE DO &nbsp;&nbsp; <span>——</span></div>-->
     <!--</div>-->
     <div class="r-w-sb-fs" :style="{width:main_width+'px'}">
-      <div class="item_certificate" v-for="item in three_certificate"
+      <div class="item_certificate shadow" v-for="item in three_certificate"
            :style="{height:main_width*0.2+'px',marginTop:main_width*0.02+'px'}">
         <img :src="item.img" alt=""  :style="{height:main_width*0.2+'px'}">
         <div class="name_certificate">{{item.title}}</div>
@@ -75,6 +75,8 @@
   }
   .name_certificate{
     position: absolute;
+    background: rgba(0,0,0,0.5);
+    color: #DBDBDB;
     bottom: 0;
     left: 0;
     height: 30px;
@@ -82,7 +84,6 @@
     text-align: center;
     width: 100%;
     font-size: 14px;
-    color: #424242;
     margin-bottom: -30px;
   }
   @keyframes show {

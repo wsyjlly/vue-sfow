@@ -1,5 +1,5 @@
 <template>
-	<div id="bottom" class="c-n-c-c" :style="{width:screen_width+'px',height:screen_width*0.3+'px'}">
+	<div id="bottom" class="c-n-c-c" :style="{width:screen_width+'px',height:screen_width*0.2+'px'}">
     <div class="r-n-c-c bottom_container" :style="{width:main_width+'px',height:main_width*0.2+'px'}">
       <div class="r-n-sb-c" :style="{width:main_width*0.24+'px',height:main_width*0.2+'px'}">
         <img src="http://47.102.210.175/uploadFiles/other/code.jpg" alt="" :width="main_width*0.1" :height="main_width*0.1">

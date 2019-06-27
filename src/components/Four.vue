@@ -1,23 +1,28 @@
 <template>
   <div id="main" class="c-n-fs-c"  :style="{width:main_width+'px'}">
-    <div class="r-w-sb-fs" :style="{width:main_width+'px'}">
-      <div class="item_certificate" v-for="item in three_certificate"
-           :style="{height:main_width*0.2+'px',marginTop:main_width*0.02+'px'}">
-        <img :src="item.img" alt=""  :style="{height:main_width*0.2+'px'}">
-        <div class="name_certificate">{{item.title}}</div>
-      </div>
-    </div>
+    <Timeline>
+      <Timeline-item v-for="(item,index) in four_news">
+        <p class="time">{{item.date}}</p>
+        <Collapse active-key="1" :style="{width:main_width+'px'}">
+          <Panel key="1">
+            {{item.title}}
+            <p class="paragraph" slot="content" v-html="item.content"></p>
+          </Panel>
+        </Collapse>
+      </Timeline-item>
+    </Timeline>
+
+    <Page :total="100" :page-size="5" :current="1"></Page>
   </div>
 </template>
 
 <script>
   import {mapGetters,mapState} from "vuex"
   export default {
-    name: "Three",
+    name: "Four",
     computed:{
-      ...mapState(["menu","current_menu"]),
-      ...mapState('one',["three_certificate"]),
-      ...mapGetters(["main_width","main_height"])
+      ...mapState('one',["four_news"]),
+      ...mapGetters(["main_width"])
     },
   }
 </script>
@@ -27,38 +32,19 @@
     font-size: 14px;
     font-family: Arial, "宋体";
   }
-
-  .item_certificate{
-    position: relative;
-    overflow: hidden;
-  }
-  .item_certificate:hover .name_certificate{
-    -webkit-animation-duration: 0.5s;
-    animation-duration: 0.5s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation-name: show;
-    animation-name: show;
-
-  }
-  .name_certificate{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    width: 100%;
+  .time{
     font-size: 14px;
-    color: #424242;
-    margin-bottom: -30px;
+    font-weight: bold;
+    /*height: 30px;*/
+    /*line-height: 30px;*/
   }
-  @keyframes show {
-    from {
-      margin-bottom: -30px;
-    }
-    to {
-      margin-bottom: 0px;
-    }
+  /*.content{*/
+    /*padding-top: 5px;*/
+  /*}*/
+  .paragraph{
+    text-align: left;
+    text-indent: 2em;
+    line-height: 1.5em;
   }
+
 </style>

@@ -3,11 +3,11 @@
     <div class="c-n-c-c title_name theme_bg" :style="{width:main_width*0.4+'px',height:main_width*0.4+'px',
     marginRight:-main_width*0.1+'px'}">
       <!--<img src="../../static/images/user.jpg" alt="" :width="main_width*(0.4)" :height="main_width*(0.4)" >-->
-      <div id="text_up">{{current_menu.text_up}}</div>
-      <div id="text_down">{{current_menu.text_down}}</div>
+      <div id="text_up">{{current_menu!==undefined ? current_menu.text_up:''}}</div>
+      <div id="text_down">{{current_menu!==undefined ? current_menu.text_down:''}}</div>
     </div>
     <div id="menu_banner_container" class="r-n-fe-fs" :style="{width:main_width*0.8+'px',height:main_width*0.3+'px'}">
-      <div class="swiper-container swiper-container-m" :style="{width:main_width*0.8+'px',height:main_width*0.3+'px'}">
+      <div class="swiper-container swiper-container-m swiper-no-swiping" :style="{width:main_width*0.8+'px',height:main_width*0.3+'px'}">
         <div class="swiper-wrapper">
           <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/2.jpg)"></div>
           <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/3.jpg)"></div>
@@ -45,8 +45,8 @@
       ...mapGetters(["main_width"])
     },
     watch:{
-		  current_menu:function(e1,e2){
-		    console.log(e1);
+		  current_menu:function(e1){
+		    // console.log(e1);
 		    let index = this.menu.indexOf(e1);
 		    // console.log(e2);
 		    console.log(index);
@@ -54,48 +54,51 @@
       }
     },
     methods:{
-      ...mapActions(["setCurrentMenu"])
+      ...mapActions(["setCurrentMenu"]),
+      swiper_init(){
+        let that = this;
+        let current_menu_new = [];
+        let router = ["one","two","three","four","five","six","seven","eight","nine"];
+        this.menu.map(function (e1,e2) {
+          if (e2!==0) current_menu_new.push(e1);
+        });
+        // console.log(current_menu_new);
+        console.log(this.menu);
+        // console.log(that.menu.indexOf(that.current_menu));
+        // this.current_menu.forEach(())
+        // console.log(that.menu.indexOf(that.current_menu)-1);
+        this.sw = new this.swiper('.swiper-container-m', {
+          initialSlide:that.menu.indexOf(that.current_menu)-1||-1,
+          effect: 'cube',
+          // loop:true,
+          grabCursor: true,
+          cubeEffect: {
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+          },
+          scrollbar: {
+            el: '.swiper-scrollbar-m',
+            hide: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next-m',
+            prevEl: '.swiper-button-prev-m',
+          },
+        });
+        this.sw.on("slideChange",function () {
+          console.log(that.sw.realIndex);
+          that.setCurrentMenu(that.sw.realIndex+1);
+          that.$router.push("/"+router[that.sw.realIndex+1]);
+        })
+      }
+    },
+    mounted:function () {
+      this.swiper_init();
     },
     updated:function () {
-		  let that = this;
-      let current_menu_new = [];
-      let router = ["one","two","three","four","five","six","seven","eight","nine"];
-      this.menu.map(function (e1,e2) {
-        if (e2!==0) current_menu_new.push(e1);
-      });
-      // console.log(current_menu_new);
-      console.log(this.menu);
-      // console.log(that.menu.indexOf(that.current_menu));
-      // this.current_menu.forEach(())
-      console.log(that.menu.indexOf(that.current_menu)-1);
-      this.sw = new this.swiper('.swiper-container-m', {
-        initialSlide:that.menu.indexOf(that.current_menu)-1,
-        effect: 'cube',
-        // loop:true,
-        grabCursor: true,
-        cubeEffect: {
-          shadow: true,
-          slideShadows: true,
-          shadowOffset: 20,
-          shadowScale: 0.94,
-        },
-        scrollbar: {
-          el: '.swiper-scrollbar-m',
-          hide: true,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next-m',
-          prevEl: '.swiper-button-prev-m',
-        },
-      });
-      this.sw.on("slideChange",function () {
-        console.log(that.sw.realIndex);
-        that.setCurrentMenu(that.sw.realIndex+1);
-        setTimeout(function () {
-          that.$router.push(router[that.sw.realIndex+1]);
-        },500);
-
-      })
+      this.swiper_init()
     }
 	}
 </script>
@@ -132,6 +135,7 @@
   }
   .swiper-container {
     border-radius: 10px;
+    cursor: pointer;
     /*overflow: hidden;*/
     /*width: 800px;*/
     /*height: 300px;*/
@@ -142,6 +146,7 @@
     /*margin-top: -150px;*/
   }
   .swiper-slide {
+    cursor: pointer;
     background-position: center;
     background-size: cover;
   }

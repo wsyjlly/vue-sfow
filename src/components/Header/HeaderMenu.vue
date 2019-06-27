@@ -26,8 +26,8 @@
       selectMenu(index){
         let router = ["one","two","three","four","five","six","seven","eight","nine"];
         let that = this;
+        that.$router.push("/"+router[index]);
         this.setCurrentMenu(index);
-        that.$router.push(router[index]);
       },
     }
 	}

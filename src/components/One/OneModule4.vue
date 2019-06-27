@@ -16,7 +16,7 @@
         <div class="swiper-container42 swiper-container" :style="{width: main_width*0.4+'px',height: main_width*0.25+'px'}">
           <div class="swiper-wrapper">
             <div class="swiper-slide theme_bg"  v-for="(item,index) in module4" :style="{width:main_width*0.4+'px',height:main_width*0.25+'px'}">
-              <div class="s_content c-n-fs-c" :style="{width: main_width*0.4-8+'px',height: main_width*0.25-8+'px'}">
+              <div class="s_content c-n-fs-c" :style="{width: main_width*0.4+'px',height: main_width*0.25+'px'}">
                 <div>{{item.title}}</div>
                 <div>{{item.detail}}</div>
               </div>
