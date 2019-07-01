@@ -11,7 +11,6 @@ import Eight from '../components/Eight'
 import Nine from '../components/Nine'
 import Details5 from '../components/Details5'
 import Details6 from '../components/Details6'
-import Cors from '../components/Test/Cors'
 
 Vue.use(Router);
 
@@ -71,11 +70,6 @@ export default new Router({
       path: '/details6/:id',
       name: 'details6',
       component: Details6
-    },
-    {
-      path: '/test',
-      name: 'cors',
-      component: Cors
     },
     {
       path: '/',
