@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="c-n-fs-c"  :style="{width:main_width+'px'}">
+  <div id="main" class="c-n-fs-c"  :style="{width:main_width+'px'}" v-show="menu.length!==0">
     <!--<div id="m_title">-->
       <!--<div id="m_name">我们做什么</div>-->
       <!--<div id="m_style"><span>——</span> &nbsp;&nbsp; WHAT WE DO &nbsp;&nbsp; <span>——</span></div>-->
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import {mapGetters,mapState} from "vuex"
+  import {mapGetters,mapState,mapActions} from "vuex"
   export default {
     name: "Three",
     computed:{
@@ -23,6 +23,17 @@
       ...mapState('one',["three_certificate"]),
       ...mapGetters(["main_width","main_height"])
     },
+    methods:mapActions("one",["module9Init"]),
+    mounted:function () {
+      let that = this;
+      if (that.three_certificate.length===0){
+        this.axios("/module9").then(function (response) {
+          that.module9Init(response.data);
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }
+    }
   }
 </script>
 

@@ -9,14 +9,7 @@
     <div id="menu_banner_container" class="r-n-fe-fs" :style="{width:main_width*0.8+'px',height:main_width*0.3+'px'}">
       <div class="swiper-container swiper-container-m swiper-no-swiping" :style="{width:main_width*0.8+'px',height:main_width*0.3+'px'}">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/2.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/3.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/4.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/5.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/6.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/7.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/8.jpg)"></div>
-          <div class="swiper-slide" style="background-image:url(http://47.102.210.175/uploadFiles/appBanner/9.jpg)"></div>
+          <div class="swiper-slide" v-for="item in banner_2" :style="{backgroundImage:'url('+item+')'}"></div>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination swiper-pagination-m"></div>
@@ -40,8 +33,8 @@
       }
     },
     computed:{
-      ...mapState('one',["module3"]),
-      ...mapState(["screen_width","current_menu","menu"]),
+      ...mapState('one',["banner_2"]),
+      ...mapState(["screen_width","current_menu","menu","route"]),
       ...mapGetters(["main_width"])
     },
     watch:{
@@ -49,24 +42,19 @@
 		    // console.log(e1);
 		    let index = this.menu.indexOf(e1);
 		    // console.log(e2);
-		    console.log(index);
+		    // console.log(index);
 		    index>0&&this.sw!==undefined ? this.sw.slideToLoop(index-1):{};
       }
     },
     methods:{
+      ...mapActions("one",["module7Init"]),
       ...mapActions(["setCurrentMenu"]),
       swiper_init(){
         let that = this;
         let current_menu_new = [];
-        let router = ["one","two","three","four","five","six","seven","eight","nine"];
         this.menu.map(function (e1,e2) {
           if (e2!==0) current_menu_new.push(e1);
         });
-        // console.log(current_menu_new);
-        console.log(this.menu);
-        // console.log(that.menu.indexOf(that.current_menu));
-        // this.current_menu.forEach(())
-        // console.log(that.menu.indexOf(that.current_menu)-1);
         this.sw = new this.swiper('.swiper-container-m', {
           initialSlide:that.menu.indexOf(that.current_menu)-1||-1,
           effect: 'cube',
@@ -88,17 +76,23 @@
           },
         });
         this.sw.on("slideChange",function () {
-          console.log(that.sw.realIndex);
           that.setCurrentMenu(that.sw.realIndex+1);
-          that.$router.push("/"+router[that.sw.realIndex+1]);
+          that.$router.push("/"+that.route[that.sw.realIndex+1]);
         })
       }
     },
     mounted:function () {
-      this.swiper_init();
+		  let that = this;
+      this.axios("/module7").then(function (response) {
+        that.module7Init(response.data);
+      }).then(function () {
+        that.swiper_init();
+      }).catch(function (response) {
+        console.log(response);
+      });
     },
     updated:function () {
-      this.swiper_init()
+      this.swiper_init();
     }
 	}
 </script>

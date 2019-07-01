@@ -2,125 +2,141 @@
 export default {
   namespaced: true,
   state :{
-    host:"http://47.102.210.175/",
-    module4_current_page:0,
+    host:"http://47.102.210.175:8080/", // host:"http://localhost:8080/",
     banner:[
-      /*"http://lorempixel.com/1200/1200/nature/1",
-      "http://lorempixel.com/1200/1200/nature/2",
-      "http://lorempixel.com/1200/1200/nature/3",
-      "http://lorempixel.com/1200/1200/nature/4",
-      "http://lorempixel.com/1200/1200/nature/5",
-      "http://lorempixel.com/1200/1200/nature/6",
-      "http://lorempixel.com/1200/1200/nature/7",
-      "http://lorempixel.com/1200/1200/nature/8",
-      "http://lorempixel.com/1200/1200/nature/9",
-      "http://lorempixel.com/1200/1200/nature/10",*/
-      "http://47.102.210.175/uploadFiles/appBanner/1.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/2.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/3.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/4.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/5.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/6.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/7.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/8.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/9.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/10.jpg",
-      /*"../../../static/images/banner/1.jpg",
-      "../../../static/images/banner/2.jpg",
-      "../../../static/images/banner/3.jpg",
-      "../../../static/images/banner/4.jpg",
-      "../../../static/images/banner/5.jpg",
-      "../../../static/images/banner/6.jpg",
-      "../../../static/images/banner/7.jpg",
-      "../../../static/images/banner/8.jpg",
-      "../../../static/images/banner/9.jpg",
-      "../../../static/images/banner/10.jpg",*/
+      // "http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/2.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/3.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/4.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/5.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/6.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/7.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/8.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/9.jpg",
+      // "http://47.102.210.175/uploadFiles/appBanner/10.jpg",
     ],
-    module1_img:[
-      // "../../../static/images/banner/1.jpg",
-      // "../../../static/images/banner/2.jpg",
-      // "../../../static/images/banner/3.jpg",
-      // "../../../static/images/banner/4.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/1.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/2.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/3.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/4.jpg",
-    ],
-    module2_img:[
-      // "../../../static/images/banner/1.jpg",
-      // "../../../static/images/banner/2.jpg",
-      // "../../../static/images/banner/3.jpg",
-      // "../../../static/images/banner/4.jpg",
-      // "../../../static/images/banner/5.jpg",
-      // "../../../static/images/banner/6.jpg",
-      // "../../../static/images/banner/7.jpg",
-      // "../../../static/images/banner/8.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/1.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/2.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/3.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/4.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/5.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/6.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/7.jpg",
-      "http://47.102.210.175/uploadFiles/appBanner/8.jpg",
-    ],
-    module3:[
+    modules:[],
+    one_module1:[
+      /*{
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1",
+        desc:"picture desc 1"
+      },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1",
+        desc:"picture desc 1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1",
+        desc:"picture desc 1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1",
+        desc:"picture desc 1"
+      }*/
+    ],
+    one_module2:[
+      /*{
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      },
+      {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
+        title:"01 图片标题1"
+      }*/
+    ],
+    one_module3:[
+      /*{
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"01",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"02",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/2.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"03",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/3.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"04",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/4.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"05",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/5.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
-      }
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+      }*/
     ],
-    module4:[
-      {
+    one_module4:[
+      /*{
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"01",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/2.jpg",
         title:"02",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/2.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"03",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/3.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/3.jpg",
         title:"04",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/4.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
       },
       {
+        img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"05",
-        img_url:"http://47.102.210.175/uploadFiles/appBanner/5.jpg",
-        detail:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
-      }
+        desc:"公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一公司优势一"
+      }*/
     ],
-
+    one_module5:{
+      longitude:"",
+      dimension:""
+    },
+    banner_2:[],
+    two_about:{
+      title:"",
+      content:""
+    },
     three_certificate:[
-      {
+      /*{
         img:"http://47.102.210.175/uploadFiles/certificate/1.jpg",
         title:"证书1",
       },
@@ -167,10 +183,10 @@ export default {
       {
         img:"http://47.102.210.175/uploadFiles/certificate/12.jpg",
         title:"证书12",
-      }
+      }*/
     ],
     four_news:[
-      {
+      /*{
         id:"",
         title:"医药冷库的设计要求",
         date:"2019/04/08",
@@ -223,10 +239,10 @@ export default {
         title:"中央厨房冷库对餐饮门店的重大意义",
         date:"2018/11/08",
         content:""
-      }
+      }*/
     ],
     five_case:[
-      {
+      /*{
         title:"医药冷库0",
         img:"http://47.102.210.175/uploadFiles/appBanner/3.jpg",
         des:"000对于医药行业新申请认证企业，我公司主营业务医药冷库建造、药品冷库安装、医用冷库设计，严格遵守国家食" +
@@ -280,10 +296,10 @@ export default {
           "      <p>自公司成立以来，公司一直致力于“诚信服务，客户至上”的经营理念，为客户提供冷库、气调库和中央空调的设计、安装、售后服务等优质的一条龙服务。“做客户之所想，想客户之所需”就是我公司的服务宗旨。公司在不断的追求卓越。在技术上我们不断创新，打破传统制冷技术，拓展了新的制冷领域，并掌握前沿制冷技术，拥有雄厚的技术后盾。为了追求技术卓越，公司聘请了大学院校制冷专家教授作为公司的技术顾问，随时提供技术支持，最大程度上满足客户求经过多年的发展，目前公司制冷项目遍及国内外，如印度尼西亚、蒙古国、菲律宾等。</p>\n" +
           "      <p>通过市场实践与检验，我公司提供的制冷服务得到了广大新老客户的一致的认可和信赖与支持。为了回报客户，我公司将不断追求卓越，以诚信为本，精诚合作的态度，最大限度的满足客户需求，服务于客户忠诚于客户，成为客户永远信赖的合作伙伴！</p>\n" +
           "      <p>公司经营理念：诚信服务，客户至上公司服务宗旨：做客户之所想，想客户之所需公司人才理念：以人为本，优秀人才铸造优质工程客户永远信赖的合作伙伴！</p>"
-      },
+      },*/
     ],
     sex_make:[
-      {
+      /*{
         title:"气调冷库0",
         img:"http://47.102.210.175/uploadFiles/appBanner/2.jpg",
         des:"气调冷库，可以长时间存放贵价蔬菜、水果，可以保持新鲜长达1至2个月，视情况而定，" +
@@ -359,10 +375,10 @@ export default {
           "      <p>自公司成立以来，公司一直致力于“诚信服务，客户至上”的经营理念，为客户提供冷库、气调库和中央空调的设计、安装、售后服务等优质的一条龙服务。“做客户之所想，想客户之所需”就是我公司的服务宗旨。公司在不断的追求卓越。在技术上我们不断创新，打破传统制冷技术，拓展了新的制冷领域，并掌握前沿制冷技术，拥有雄厚的技术后盾。为了追求技术卓越，公司聘请了大学院校制冷专家教授作为公司的技术顾问，随时提供技术支持，最大程度上满足客户求经过多年的发展，目前公司制冷项目遍及国内外，如印度尼西亚、蒙古国、菲律宾等。</p>\n" +
           "      <p>通过市场实践与检验，我公司提供的制冷服务得到了广大新老客户的一致的认可和信赖与支持。为了回报客户，我公司将不断追求卓越，以诚信为本，精诚合作的态度，最大限度的满足客户需求，服务于客户忠诚于客户，成为客户永远信赖的合作伙伴！</p>\n" +
           "      <p>公司经营理念：诚信服务，客户至上公司服务宗旨：做客户之所想，想客户之所需公司人才理念：以人为本，优秀人才铸造优质工程客户永远信赖的合作伙伴！</p>"
-      },
+      },*/
     ],
     seven_equipment:[
-      {
+      /*{
         img:"http://47.102.210.175/uploadFiles/appBanner/2.jpg",
         title:"equipment1",
       },
@@ -381,10 +397,10 @@ export default {
       {
         img:"http://47.102.210.175/uploadFiles/appBanner/3.jpg",
         title:"equipment1",
-      },
+      },*/
     ],
     eight_product:[
-      {
+      /*{
         img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"product1",
       },
@@ -403,27 +419,158 @@ export default {
       {
         img:"http://47.102.210.175/uploadFiles/appBanner/1.jpg",
         title:"product1",
-      },
+      },*/
     ],
-
+    nine_contact:{
+      address:"",
+      tel:"",
+      web:"",
+      email:""
+    }
   },
   getters:{
+
     /*main_height : state => {
       return state.screen_height;
     }*/
   },
-  mutations:{
-    /*UPDATE_CURRENT_MENU(state,index){
-      state.current_menu = state.menu[index];
-    },*/
-  },
+  mutations:{},
   actions:{
-    /*setCurrentMenu({commit,state},index){
-      commit("UPDATE_CURRENT_MENU",index);
+    module1Init({state,commit},data){
+      state.banner = [];
+      data.forEach((item)=>{
+        state.banner.push(item.content);
+      });
     },
-    init({commit}){
-      commit("UPDATE_CURRENT_MENU",0);
-    }*/
+    module2Init({state,commit},data){
+      state.one_module1 = [];
+      data.forEach((item)=>{
+        let obj = {};
+        obj.img = item.content;
+        obj.title = item.column1;
+        obj.desc =item.column2;
+        state.one_module1.push(obj);
+      });
+    },
+    module3Init({state,commit},data){
+      state.one_module2 = [];
+      data.forEach((item)=>{
+        let obj = {};
+        obj.img = item.content;
+        obj.title = item.column1;
+        state.one_module2.push(obj);
+      });
+    },
+    module4Init({state,commit},data){
+      state.one_module3 = [];
+      data.forEach((item)=>{
+        let obj = {};
+        obj.img = item.content;
+        obj.title = item.column1;
+        obj.desc =item.column2;
+        state.one_module3.push(obj);
+      });
+    },
+    module5Init({state,commit},data){
+      state.one_module4 = [];
+      data.forEach((item)=>{
+        let obj = {};
+        obj.img = item.content;
+        obj.title = item.column1;
+        obj.desc =item.column2;
+        state.one_module4.push(obj);
+      });
+    },
+    module6Init({state,commit},data){
+      state.one_module5.longitude = data[0].column1
+      state.one_module5.dimension = data[0].column2
+    },
+    module7Init({state,commit},data){
+      state.banner_2 = [];
+      data.forEach((item)=>{
+        state.banner_2.push(item.content);
+      });
+    },
+    module8Init({state,commit},data){
+      state.two_about.title = data[0].content;
+      state.two_about.content = data[0].column3;
+    },
+    module9Init({state,commit},data){
+      state.three_certificate = [];
+      data.forEach((item)=>{
+        state.three_certificate.push({
+          img:item.content,
+          title:item.column1
+        });
+      });
+    },
+    module10Init({state,commit},data){
+      state.four_news = [];
+      data.forEach((item)=>{
+        state.four_news.push({
+          id:item.id,
+          title:item.content,
+          date:item.column1,
+          content:item.column3
+        });
+      });
+    },
+    module11Init({state,commit},data){
+      state.five_case = [];
+      data.forEach((item)=>{
+        state.five_case.push({
+          title:item.content,
+          img:item.column1,
+          des:item.column2,
+          details:item.column3,
+        });
+      });
+    },
+    module12Init({state,commit},data){
+      state.sex_make = [];
+      data.forEach((item)=>{
+        state.sex_make.push({
+          title:item.content,
+          img:item.column1,
+          des:item.column2,
+          details:item.column3,
+        });
+      });
+    },
+    module13Init({state,commit},data){
+      state.seven_equipment = [];
+      data.forEach((item)=>{
+        state.seven_equipment.push({
+          title:item.column1,
+          img:item.content,
+        });
+      });
+    },
+    module14Init({state,commit},data){
+      state.eight_product = [];
+      data.forEach((item)=>{
+        state.eight_product.push({
+          title:item.column1,
+          img:item.content,
+        });
+      });
+    },
+    module15Init({state,commit},data){
+      state.nine_contact.address = data[0].content;
+      state.nine_contact.tel = data[0].column1;
+      state.nine_contact.web = data[0].column2;
+      state.nine_contact.email = data[0].column3;
+    },
+
+    modulesInit({state,commit},data){
+      data.modules.forEach((item)=>{
+        state.modules.push({
+          id:item.id,
+          name:item.name,
+          desc:item.column1
+        })
+      });
+    },
   }
 }
 

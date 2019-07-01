@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="c-n-fs-fs"  :style="{width:main_width+'px'}">
+  <div id="main" class="c-n-fs-fs"  :style="{width:main_width+'px'}" v-show="menu.length!==0">
     <div class="item_make" v-for="(item,index) in sex_make" :style="{width:main_width-40+'px'}">
       <Card :bordered="false">
         <p slot="title">{{item.title}}</p>
@@ -18,13 +18,31 @@
 </template>
 
 <script>
-  import {mapGetters,mapState} from "vuex"
+  import {mapGetters,mapState,mapActions} from "vuex"
   export default {
     name: "Six",
     computed:{
       ...mapState('one',["sex_make"]),
+      ...mapState(["menu"]),
       ...mapGetters(["main_width"])
     },
+    methods:{
+      ...mapActions("one",["module12Init"]),
+      showDetails(index){
+        console.log(index);
+        this.$router.push("/details6/"+index)
+      }
+    },
+    mounted:function () {
+      let that = this;
+      if (that.sex_make.length===0) {
+        this.axios("/module12").then(function (response) {
+          that.module12Init(response.data);
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }
+    }
   }
 </script>
 

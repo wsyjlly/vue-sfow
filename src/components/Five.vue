@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="c-n-fs-fs"  :style="{width:main_width+'px'}">
+  <div id="main" class="c-n-fs-fs"  :style="{width:main_width+'px'}" v-show="menu.length!==0">
     <div class="item_make" v-for="(item,index) in five_case" :style="{width:main_width-40+'px'}">
       <Card :bordered="false">
         <p slot="title">{{item.title}}</p>
@@ -18,17 +18,28 @@
 </template>
 
 <script>
-  import {mapGetters,mapState} from "vuex"
+  import {mapGetters,mapState,mapActions} from "vuex"
   export default {
     name: "Five",
     computed:{
       ...mapState('one',["five_case"]),
+      ...mapState(["menu"]),
       ...mapGetters(["main_width"])
     },
     methods:{
+      ...mapActions("one",["module11Init"]),
       showDetails(index){
-        console.log(index);
         this.$router.push("/details5/"+index)
+      }
+    },
+    mounted:function () {
+      let that = this;
+      if (that.five_case.length===0) {
+        this.axios("/module11").then(function (response) {
+          that.module11Init(response.data);
+        }).catch(function (response) {
+          console.log(response);
+        });
       }
     }
   }

@@ -18,21 +18,35 @@
       }
     },
     computed:{
-      ...mapState(["current_menu"]),
+      ...mapState(["current_menu","menu"]),
       ...mapState('one',["sex_make"]),
       ...mapGetters(["main_width"])
     },
     methods:{
-      ...mapActions(["setCurrentMenu"])
+      ...mapActions(["setCurrentMenu","module16Init"]),
+      ...mapActions("one",["module12Init"])
     },
     mounted:function () {
-      console.log("参数："+this.$route.params.id);
-      let id = this.$route.params.id;
+      let that = this;
+      console.log("参数："+that.$route.params.id);
+      let id = that.$route.params.id;
       console.log(isNaN(id));
-      if (isNaN(id)||id===undefined) this.$router.push("/details5");
-      this.title = this.sex_make[id].title;
-      this.current_details = this.sex_make[id].details;
-      this.current_menu === undefined ? this.setCurrentMenu(5):{};
+      if (isNaN(id)||id===undefined) that.$router.push("/details6");
+      if (that.menu.length===0){
+        this.axios("http://localhost:8080/module16").then(function (response) {
+          that.module16Init(response.data);
+        }).then(function () {
+          that.setCurrentMenu(5);
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }else{
+        that.title = that.sex_make[id].title;
+        that.current_details = that.sex_make[id].details;
+      }
+
+
+
     }
   }
 </script>

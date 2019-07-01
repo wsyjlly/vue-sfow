@@ -1,16 +1,16 @@
 <template>
   <div id="one-module3" class="c-n-fs-c" :style="{width:main_width+'px'}">
-    <div id="m_title">
-      <div id="m_name">公司优势</div>
-      <div id="m_style"><span>——</span> &nbsp;&nbsp; ADVANTAGE &nbsp;&nbsp; <span>——</span></div>
+    <div id="m_title" v-show="one_module3.length!==0">
+      <div id="m_name">{{modules.length!==0?modules[3].name:""}}</div>
+      <div id="m_style"><span>——</span> &nbsp;&nbsp; {{modules.length!==0?modules[3].desc:""}} &nbsp;&nbsp; <span>——</span></div>
     </div>
     <div id="module3_img" class="r-n-c-fs" :style="{width: main_width+'px'}">
       <div class="swiper-container3 swiper-container"  :style="{width: main_width+'px',height: main_width*0.3+'px'}">
         <div class="swiper-wrapper">
-          <div class="swiper-slide c-n-c-c" v-for="(item,index) in module3" :style="{width: main_width*0.3+'px',height: main_width*0.3+'px',backgroundImage:'url('+item.img_url+')'}">
+          <div class="swiper-slide c-n-c-c" v-for="(item,index) in one_module3" :style="{width: main_width*0.3+'px',height: main_width*0.3+'px',backgroundImage:'url('+item.img+')'}">
             <div class="s_content c-n-fs-c" :style="{width: main_width*0.32+'px',height: main_width*0.3+'px'}">
               <div>{{item.title}}</div>
-              <div>{{item.detail}}</div>
+              <div>{{item.desc}}</div>
             </div>
           </div>
         </div>
@@ -23,27 +23,41 @@
 </template>
 
 <script>
-  import {mapState,mapGetters} from "vuex"
+  import {mapState,mapGetters,mapActions} from "vuex"
   export default {
     name: "OneModule3",
     computed:{
-      ...mapState('one',["module3"]),
+      ...mapState('one',["one_module3","modules"]),
       ...mapGetters(["main_width"])
     },
+    methods:{
+      ...mapActions("one",["module4Init"]),
+      swiperInit(){
+        new this.swiper('.swiper-container3', {
+          loop:true,
+          slidesPerView: 3,
+          spaceBetween: 30,
+          navigation: {
+            nextEl: '.swiper-button-next3',
+            prevEl: '.swiper-button-prev3',
+          },
+        });
+      }
+    },
     mounted:function () {
-      new this.swiper('.swiper-container3', {
-        loop:true,
-        slidesPerView: 3,
-        spaceBetween: 30,
-        /*pagination: {
-          el: '.swiper-pagination3',
-          clickable: true,
-        },*/
-        navigation: {
-          nextEl: '.swiper-button-next3',
-          prevEl: '.swiper-button-prev3',
-        },
-      });
+      let that = this;
+      if (that.one_module3.length===0){
+        this.axios("/module4").then(function (response) {
+          that.module4Init(response.data);
+        }).then(function () {
+          that.swiperInit();
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }else{
+        that.swiperInit();
+      }
+
     }
   }
 </script>
@@ -99,7 +113,6 @@
   }
 
   .swiper-container3 {
-    background: #bbdff4;
     width: 100%;
     height: 100%;
     overflow: hidden;

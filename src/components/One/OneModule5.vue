@@ -1,47 +1,62 @@
 <template>
   <div id="one-module5" class="c-n-fs-c" :style="{width:screen_width+'px'}">
-    <div id="m_title">
-      <div id="m_name">我们的位置</div>
-      <div id="m_style"><span>——</span> &nbsp;&nbsp; POSITION &nbsp;&nbsp; <span>——</span></div>
+    <div id="m_title" v-show="one_module5.longitude!==''">
+      <div id="m_name">{{modules.length!==0?modules[5].name:""}}</div>
+      <div id="m_style"><span>——</span> &nbsp;&nbsp; {{modules.length!==0?modules[5].desc:""}} &nbsp;&nbsp; <span>——</span></div>
     </div>
     <div id="module5" class="r-n-c-fs" :style="{width:screen_width+'px',height: main_width*0.3+'px'}"></div>
   </div>
 </template>
 
 <script>
-  import {mapState,mapGetters} from "vuex"
+  import {mapState,mapGetters,mapActions} from "vuex"
   export default {
     name: "OneModule5",
     computed:{
       ...mapState(["screen_width"]),
-      ...mapState('one',["module5"]),
+      ...mapState('one',["one_module5","modules"]),
       ...mapGetters(["main_width"])
     },
+    methods:{
+      ...mapActions("one",["module6Init"]),
+      mapInt(){
+        let that = this;
+        let map = new BMap.Map("module5");
+        // 创建地图实例
+        let point = new BMap.Point(that.one_module5.longitude,that.one_module5.dimension);
+        // 创建点坐标
+        map.centerAndZoom(point, 16);
+        let marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);               // 将标注添加到地图中
+        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+        // map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+        map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+        let navigationControl = new BMap.NavigationControl({
+          // 靠左上角位置
+          anchor: BMAP_ANCHOR_TOP_LEFT,
+          // LARGE类型
+          type: BMAP_NAVIGATION_CONTROL_LARGE,
+          // 启用显示定位
+          enableGeolocation: true
+        });
+        map.addControl(navigationControl);
+      }
+    },
+    // created:function (){this.loadScript()},
     mounted:function () {
-      let map = new BMap.Map("module5");
-// 创建地图实例
-      var point = new BMap.Point(113.542246,34.823207);
-// 创建点坐标
-      map.centerAndZoom(point, 16);
-      var marker = new BMap.Marker(point);  // 创建标注
-      map.addOverlay(marker);               // 将标注添加到地图中
-      marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-      // map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
-      map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
-      let navigationControl = new BMap.NavigationControl({
-        // 靠左上角位置
-        anchor: BMAP_ANCHOR_TOP_LEFT,
-        // LARGE类型
-        type: BMAP_NAVIGATION_CONTROL_LARGE,
-        // 启用显示定位
-        enableGeolocation: true
-      });
-      map.addControl(navigationControl);
+      let that = this;
+      if (that.one_module5.longitude===""){
+        this.axios("/module6").then(function (response) {
+          that.module6Init(response.data);
+        }).then(function () {
+          that.mapInt();
+        }).catch(function (response) {
+          console.log(response);
+        });
+      } else{
+        that.mapInt();
+      }
 
-      //单击获取点击的经纬度
-      map.addEventListener("click",function(e){
-
-      });
     }
   }
 </script>

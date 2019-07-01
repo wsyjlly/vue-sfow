@@ -1,6 +1,6 @@
 <template>
-  <div id="menu" class="r-n-c-c theme_bg"  :style="{width:screen_width+'px'}">
-    <div id="menu_content" class="r-n-sa-c" :style="{width:main_width+'px'}">
+  <div id="menu" class="r-n-c-c" :style="{width:screen_width+'px',background: menu.length!==0?'#C8E6C9':''}">
+    <div id="menu_content" class="r-n-sa-c" :style="{width:main_width+'px',background: menu.length!==0?'#A5D6A7':''}">
       <div class="menu_item item-edr-fill c-n-c-c"
            :class="item===current_menu ? 'current_menu_item':''"
            v-for="(item,index) in menu"
@@ -18,17 +18,28 @@
 	export default {
 		name: "HeaderMenu",
     computed:{
-      ...mapState(["screen_width","screen_height","menu","current_menu"]),
+      ...mapState(["screen_width","screen_height","menu","current_menu","route"]),
       ...mapGetters(["main_width","main_height"]),
     },
     methods:{
-      ...mapActions(["setCurrentMenu","init"]),
+      ...mapActions(["setCurrentMenu","init","module16Init"]),
       selectMenu(index){
-        let router = ["one","two","three","four","five","six","seven","eight","nine"];
         let that = this;
-        that.$router.push("/"+router[index]);
+        that.$router.push(that.route[index]);
         this.setCurrentMenu(index);
       },
+    },
+    mounted:function () {
+      let that = this;
+      this.axios("/module16").then(function (response) {
+        that.module16Init(response.data);
+      }).then(function () {
+        let path = that.$router.currentRoute.path.split("/")[1];
+        that.setCurrentMenu(that.route.indexOf(path));
+        // that.setCurrentMenu(index);
+      }).catch(function (response) {
+        console.log(response);
+      });
     }
 	}
 </script>
@@ -40,7 +51,7 @@
     margin-top: 10px;
   }
   #menu_content{
-    background: #A5D6A7;
+
     /*width: 1200px;*/
     height: 60px;
   }

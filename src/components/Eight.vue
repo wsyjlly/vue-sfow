@@ -1,7 +1,7 @@
 <template>
-  <div id="main" class="c-n-fs-c"  :style="{width:main_width+'px'}">
+  <div id="main" class="c-n-fs-c"  :style="{width:main_width+'px'}" v-show="menu.length!==0">
     <div class="r-w-fs-fs" :style="{width:main_width+'px'}">
-      <div class="item_product shadow" v-for="item in eight_product"
+      <div class="item_product shadow" v-for="item in eight_product_current"
            :style="{height:main_width*0.2+'px',
            width:main_width*0.3+'px',
            margin:main_width*0.016+'px'}">
@@ -9,18 +9,53 @@
         <div class="name_product">{{item.title}}</div>
       </div>
     </div>
-    <Page :total="100" :page-size="5" :current="1"></Page>
+
+    <Page :total="eight_product.length"
+          @on-change="pageChange"
+          :page-size="eight_product_page_size"
+          :current="1"
+          v-show="eight_product_current.length!==0"></Page>
   </div>
 </template>
 
 <script>
-  import {mapGetters,mapState} from "vuex"
+  import {mapGetters,mapState,mapActions} from "vuex"
   export default {
     name: "Eight",
+    data(){
+      return{
+        eight_product_current:[],
+        eight_product_page_size:6,
+        eight_product_current_page:1,
+      }
+    },
     computed:{
       ...mapState('one',["eight_product"]),
+      ...mapState(["menu"]),
       ...mapGetters(["main_width"])
     },
+    methods:{
+      ...mapActions("one",["module14Init"]),
+      pageChange(page){
+        let that = this;
+        that.eight_product_current = Array.from(that.eight_product).splice((page-1)*that.eight_product_page_size,that.eight_product_page_size);
+      },
+    },
+    mounted:function () {
+      let that = this;
+      if (that.eight_product.length===0) {
+        this.axios("/module14").then(function (response) {
+          that.module14Init(response.data);
+
+        }).then(function () {
+          that.eight_product_current = Array.from(that.eight_product).splice(0,that.eight_product_page_size);
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }else{
+        that.eight_product_current = Array.from(that.eight_product).splice(0,that.eight_product_page_size);
+      }
+    }
   }
 </script>
 

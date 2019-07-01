@@ -9,7 +9,7 @@
 <script>
 import Header from "./components/Header";
 import HeaderMenu from "./components/Header/HeaderMenu";
-import {mapState} from "vuex"
+import {mapState,mapActions} from "vuex"
 import Bottom from "./components/Bottom";
 export default {
   name: 'App',
@@ -18,14 +18,24 @@ export default {
     ...mapState(["screen_width","screen_height"])
   },
   created:function () {
+    this.axios("/modules").then(function (response) {
+      that.modulesInit(response.data)
+    }).catch(function (response) {
+      console.log(response);
+    });
+
+    let that = this;
     let scrollWidth = this.getScrollWidth()===0 ? 17:this.getScrollWidth();
     this.setWindowSize(scrollWidth);
     window.onresize = ()=>{
       this.setWindowSize(scrollWidth);
     }
   },
+  mounted:function(){
 
+  },
   methods:{
+    ...mapActions("one",["modulesInit"]),
     setWindowSize (scrollWidth) {
       this.$store.state.screen_height = window.innerHeight<=500 ? 500:window.innerHeight;
       this.$store.state.screen_width = window.innerWidth<=1200 ? 1200:window.innerWidth-scrollWidth;
@@ -46,7 +56,6 @@ export default {
       element[0].removeChild(outer);
       return width;
     }
-
   }
 }
 </script>

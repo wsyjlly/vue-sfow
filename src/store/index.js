@@ -13,19 +13,22 @@ export default new Vuex.Store({
     screen_height:0,
     name:"",
     password:"",
-    logo_img:"http://47.102.210.175/uploadFiles/other/user.jpg",
-    phone_img:"http://47.102.210.175/uploadFiles/other/connect.png",
-    main_title : "北京嘉瑞世飞制冷有限公司",
-    main_title_t : "Beijing Jiarui Shifei Refrigeration Limited company",
-    connect_content:"详询热线 : 13901228161 刘经理",
+    logo_img:"",
+    phone_img:"",
+    main_title : "",
+    main_title_t : "",
+    connect_content:"",
+    code1:"",
+    code2:"",
+    copy_right:"",
+    route:["one","two","three","four","five","six","seven","eight","nine"],
     current_menu:{
-      id:"",
       isSelected:true,
       text_up:"公司首页",
       text_down:"HOME",
     },
     menu:[
-      {
+      /*{
         id:"",
         isSelected:true,
         text_up:"公司首页",
@@ -78,7 +81,7 @@ export default new Vuex.Store({
         isSelected:false,
         text_up:"联系我们",
         text_down:"CONTACT US",
-      },
+      },*/
     ]
   },
   getters:{
@@ -100,11 +103,40 @@ export default new Vuex.Store({
   mutations:{
     UPDATE_CURRENT_MENU(state,index){
       state.current_menu = state.menu[index];
-    },
+    }
   },
   actions:{
     setCurrentMenu({commit,state},index){
       commit("UPDATE_CURRENT_MENU",index);
+    },
+    /*
+    * 初始化菜单
+    * */
+    module16Init({state,commit},data) {
+      state.menu = [];
+      data.forEach((item)=>{
+        state.menu.push({
+          isSelected:true,
+          text_up:item.content,
+          text_down:item.column1,
+        });
+      });
+    },
+    /*
+    * 初始化菜单
+    * */
+    module17Init({state,commit},data) {
+      let url = data[0].column3.split("@@@");
+      state.logo_img=url[0];
+      state.phone_img=url[1];
+      state.main_title = data[0].content;
+      state.main_title_t = data[0].column1;
+      state.connect_content=data[0].column2;
+    },
+    module18Init({state,commit},data) {
+      state.code1 = data[0].content;
+      state.code2 = data[0].column1;
+      state.copy_right = data[0].column2;
     },
     init({commit},index){
       let i = index===undefined ? 0:index;
@@ -115,7 +147,7 @@ export default new Vuex.Store({
     one,
   },
   strict: false,
-  plugins: [createLogger()]
+  // plugins: [createLogger()]
 })
 
 

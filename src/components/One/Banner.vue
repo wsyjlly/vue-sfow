@@ -1,5 +1,6 @@
 <template>
-  <div id="banner" class="c-n-c-c" :style="{width:screen_width+'px',height:screen_width*0.45+'px'}">
+  <div id="banner" class="c-n-c-c" :style="{width:screen_width+'px',height:screen_width*0.45+'px',
+    background: menu.length!==0?'#FAFAFA':''}">
     <div class="swiper-container1 r-n-c-c swiper-container" :style="{width:screen_width+'px',height:screen_width*0.45+'px'}">
       <div class="swiper-wrapper" >
         <div class="swiper-slide" v-for="item in banner" :style="{width:screen_width*0.6+'px',height:screen_width*0.36+'px'}">
@@ -17,52 +18,70 @@
 </template>
 
 <script>
-  import {mapGetters,mapState} from "vuex"
+  import {mapGetters,mapState,mapActions} from "vuex"
   import "../../../static/frames/swiper/swiper.css"
 	export default {
 		name: "Banner",
     computed:{
-      ...mapState(["screen_width","screen_height"]),
+      ...mapState(["screen_width","screen_height","menu"]),
       ...mapState('one',["banner"]),
       ...mapGetters(["main_width","main_height"])
     },
     watch:{
 
     },
+    methods:{
+      ...mapActions("one",["module1Init"]),
+      swiperInit(){
+        new this.swiper('.swiper-container1', {
+          // lazy: true,
+          loop:true,
+          speed: 1000,
+          autoplay:{
+            delay:5000,
+            disableOnInteraction:false
+          },
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true,
+          },
+          pagination: {
+            el: '.swiper-pagination1',
+          },
+          navigation: {
+            nextEl: '.swiper-button-next1',
+            prevEl: '.swiper-button-prev1',
+          },
+        });
+      }
+    },
     mounted:function () {
-      new this.swiper('.swiper-container1', {
-        // lazy: true,
-        loop:true,
-        speed: 1000,
-        autoplay:{
-          delay:5000,
-          disableOnInteraction:false
-        },
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        coverflowEffect: {
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows : true,
-        },
-        pagination: {
-          el: '.swiper-pagination1',
-        },
-        navigation: {
-          nextEl: '.swiper-button-next1',
-          prevEl: '.swiper-button-prev1',
-        },
-      });
+		  let that = this;
+		  if (that.banner.length===0){
+        this.axios("/module1").then(function (response) {
+          that.module1Init(response.data)
+        }).then(function () {
+          that.swiperInit();
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }else{
+        that.swiperInit();
+      }
+
+
     }
   }
 </script>
 <style scoped>
   #banner {
-    background: #FAFAFA;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 14px;
     color:#000;

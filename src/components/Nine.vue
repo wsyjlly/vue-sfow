@@ -1,22 +1,34 @@
 <template>
-  <div id="main" class="r-n-c-fs"  :style="{width:main_width+'px'}">
+  <div id="main" class="r-n-c-fs"  :style="{width:main_width+'px'}" v-show="menu.length!==0">
     <div class="c-n-fs-fs" :style="{width:main_width*0.8+'px'}">
-      <p>地址：北京市朝阳区酒仙桥中路26号新华联丽港B座331室</p>
-      <p>电话：400-960-2114/010-84703669</p>
-      <p>网址：jxbczl.com</p>
-      <p>邮箱：jxbczl@126.com</p>
+      <p>{{nine_contact.address}}</p>
+      <p>{{nine_contact.tel}}</p>
+      <p>{{nine_contact.web}}</p>
+      <p>{{nine_contact.email}}</p>
     </div>
   </div>
 </template>
 
 <script>
-  import {mapGetters,mapState} from "vuex"
+  import {mapGetters,mapState,mapActions} from "vuex"
   export default {
     name: "Nine",
     computed:{
-      ...mapState('one',["four_news"]),
+      ...mapState('one',["nine_contact"]),
+      ...mapState(["menu"]),
       ...mapGetters(["main_width"])
     },
+    methods:mapActions("one",["module15Init"]),
+    mounted:function () {
+      let that = this;
+      if (that.nine_contact.email==="") {
+        this.axios("/module15").then(function (response) {
+          that.module15Init(response.data);
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }
+    }
   }
 </script>
 

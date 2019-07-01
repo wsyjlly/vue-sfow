@@ -1,14 +1,14 @@
 <template>
   <div id="title" class="r-n-sb-c">
     <div id="company" class="r-n-fs-c">
-      <img :src="logo_img" alt="" width="50" height="50">
+      <img :src="logo_img" alt="" width="50" height="50" v-show="logo_img!==''">
       <div id="name" class="c-n-c-c">
         <p>{{main_title}}</p>
         <p class="">{{main_title_t}}</p>
       </div>
     </div>
     <div id="connect" class="r-n-fs-c">
-      <img :src="phone_img" alt="" width="30" height="30">
+      <img :src="phone_img" alt="" width="30" height="30" v-show="phone_img!==''">
       <div id="phone" class="r-n-fs-c">
         <p>{{connect_content}}</p>
       </div>
@@ -69,6 +69,9 @@
   #connect{
     cursor: pointer;
     font-size: 16px;
+  }
+  #phone{
+    margin-left: 10px;
   }
   #phone p{
     font-weight: 700;

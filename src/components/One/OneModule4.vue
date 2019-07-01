@@ -1,24 +1,24 @@
 <template>
   <div id="one-module4" class="c-n-fs-c" :style="{width:main_width+'px'}">
-    <div id="m_title">
-      <div id="m_name">公司资讯</div>
-      <div id="m_style"><span>——</span> &nbsp;&nbsp; NEWS &nbsp;&nbsp; <span>——</span></div>
+    <div id="m_title" v-show="one_module4.length!==0">
+      <div id="m_name">{{modules.length!==0?modules[4].name:""}}</div>
+      <div id="m_style"><span>——</span> &nbsp;&nbsp; {{modules.length!==0?modules[4].desc:""}} &nbsp;&nbsp; <span>——</span></div>
     </div>
     <div id="module4_img" class="r-n-c-fs" :style="{width: main_width+'px'}">
       <div class="r-n-fs-fs" :style="{width: main_width*0.8+'px',height: main_width*0.25+'px'}">
         <div class="swiper-container4 swiper-container"  :style="{width: main_width*0.4+'px',height: main_width*0.25+'px'}">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"  v-for="item in module4" :style="{backgroundImage:'url('+item.img_url+')',width:main_width*0.4+'px',height:main_width*0.25+'px'}"></div>
+            <div class="swiper-slide"  v-for="item in one_module4" :style="{backgroundImage:'url('+item.img+')',width:main_width*0.4+'px',height:main_width*0.25+'px'}"></div>
           </div>
           <!-- Add Pagination -->
           <div class="swiper-pagination4 swiper-pagination"></div>
         </div>
         <div class="swiper-container42 swiper-container" :style="{width: main_width*0.4+'px',height: main_width*0.25+'px'}">
           <div class="swiper-wrapper">
-            <div class="swiper-slide theme_bg"  v-for="(item,index) in module4" :style="{width:main_width*0.4+'px',height:main_width*0.25+'px'}">
+            <div class="swiper-slide theme_bg"  v-for="(item,index) in one_module4" :style="{width:main_width*0.4+'px',height:main_width*0.25+'px'}">
               <div class="s_content c-n-fs-c" :style="{width: main_width*0.4+'px',height: main_width*0.25+'px'}">
                 <div>{{item.title}}</div>
-                <div>{{item.detail}}</div>
+                <div>{{item.desc}}</div>
               </div>
             </div>
           </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import {mapState,mapGetters} from "vuex"
+  import {mapState,mapGetters,mapActions} from "vuex"
   export default {
     name: "OneModule4",
     data(){
@@ -38,47 +38,66 @@
       }
     },
     computed:{
-      ...mapState('one',["module4"]),
+      ...mapState('one',["one_module4","modules"]),
       ...mapGetters(["main_width"])
+    },
+    methods:{
+      ...mapActions("one",["module5Init"]),
+      swiperInit(){
+        let that = this;
+        let swiperLeft = new that.swiper('.swiper-container4', {
+          direction: 'vertical',
+          loop:true,
+          autoplay:{
+            delay:3000,
+            disableOnInteraction:false
+          },
+          pagination: {
+            el: '.swiper-pagination4',
+            clickable: true,
+          }
+        });
+
+        let swiperRight =  new that.swiper('.swiper-container42', {
+          effect: 'cube',
+          loop:true,
+          autoplay:{
+            delay:3000,
+            disableOnInteraction:false
+          },
+          grabCursor: true,
+          cubeEffect: {
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+          },
+        });
+        swiperLeft.on('slideChange',function () {
+          that.module4_current_page = swiperLeft.realIndex;
+          swiperRight.slideToLoop(swiperLeft.realIndex);
+        });
+        swiperRight.on('slideChange',function () {
+          that.module4_current_page = swiperRight.realIndex;
+          swiperLeft.slideToLoop(swiperRight.realIndex);
+        });
+      }
     },
     mounted:function () {
       let that = this;
-      let swiperLeft = new this.swiper('.swiper-container4', {
-        direction: 'vertical',
-        loop:true,
-        autoplay:{
-          delay:3000,
-          disableOnInteraction:false
-        },
-        pagination: {
-          el: '.swiper-pagination4',
-          clickable: true,
-        }
-      });
+      if (that.one_module4.length===0){
+        this.axios("/module5").then(function (response) {
+          that.module5Init(response.data);
+        }).then(function () {
+          that.swiperInit();
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }else{
+        that.swiperInit();
+      }
 
-      let swiperRight =  new this.swiper('.swiper-container42', {
-        effect: 'cube',
-        loop:true,
-        autoplay:{
-          delay:3000,
-          disableOnInteraction:false
-        },
-        grabCursor: true,
-        cubeEffect: {
-          shadow: true,
-          slideShadows: true,
-          shadowOffset: 20,
-          shadowScale: 0.94,
-        },
-      });
-      swiperLeft.on('slideChange',function () {
-        that.module4_current_page = swiperLeft.realIndex;
-        swiperRight.slideToLoop(swiperLeft.realIndex);
-      });
-      swiperRight.on('slideChange',function () {
-        that.module4_current_page = swiperRight.realIndex;
-        swiperLeft.slideToLoop(swiperRight.realIndex);
-      });
+
     }
   }
 </script>
@@ -122,7 +141,6 @@
   }
 
   .swiper-container4,.swiper-container42 {
-    background: #bbdff4;
     width: 100%;
     height: 100%;
     overflow: hidden;

@@ -15,6 +15,7 @@ import "../static/frames/swiper/swiper.css"
 import "../static/frames/flex.css"
 import "../static/frames/animate.css"
 
+axios.defaults.baseURL = 'http://47.102.210.175:8080';
 Vue.prototype.axios = axios;
 Vue.prototype.$ = jquery;
 Vue.prototype.map = map;

@@ -1,19 +1,19 @@
 <template>
   <div id="one-module2" class="c-n-fs-c" :style="{width:main_width+'px'}">
-    <div id="m_title">
-      <div id="m_name">产品展示</div>
-      <div id="m_style"><span>——</span> &nbsp;&nbsp; PRODUCTS &nbsp;&nbsp; <span>——</span></div>
+    <div id="m_title" v-show="one_module2.length!==0">
+      <div id="m_name">{{modules.length!==0?modules[2].name:""}}</div>
+      <div id="m_style"><span>——</span> &nbsp;&nbsp; {{modules.length!==0?modules[2].desc:""}} &nbsp;&nbsp; <span>——</span></div>
     </div>
     <div id="module2_img" class="r-w-sa-c">
       <div class="m2-img r-n-c-c"
-           v-for="item in module2_img"
+           v-for="item in one_module2"
            :style="{width: main_width*0.28+'px',
            height: main_width*0.24+'px',
            marginTop:main_width*0.02+'px' ,
            marginBottom:main_width*0.04+'px' ,
            marginLeft:main_width*0.015+'px' ,
            marginRight:main_width*0.015+'px' ,
-           backgroundImage:'url('+item+')'}">
+           backgroundImage:'url('+item.img+')'}">
         <div class="m2-img-inner c-n-fe-c"
              :style="{width: main_width*0.3+'px',
              height: main_width*0.25+'px'}">
@@ -21,7 +21,7 @@
                :style="{width: main_width*0.29+'px',
                height: main_width*0.03+'px',
                lineHeight: main_width*0.03+'px',
-               marginBottom: -main_width*0.015+'px'}">简单点</div>
+               marginBottom: -main_width*0.015+'px'}">{{item.title}}</div>
         </div>
       </div>
     </div>
@@ -29,12 +29,23 @@
 </template>
 
 <script>
-  import {mapState,mapGetters} from "vuex"
+  import {mapState,mapGetters,mapActions} from "vuex"
   export default {
     name: "OneModule2",
     computed:{
-      ...mapState('one',["module2_img"]),
+      ...mapState('one',["one_module2","modules"]),
       ...mapGetters(["main_width"])
+    },
+    methods:mapActions("one",["module3Init"]),
+    mounted:function () {
+      let that = this;
+      if (that.one_module2.length===0) {
+        this.axios("/module3").then(function (response) {
+          that.module3Init(response.data);
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }
     }
   }
 </script>

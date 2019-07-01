@@ -18,20 +18,33 @@
       }
     },
     computed:{
-      ...mapState(["current_menu"]),
+      ...mapState(["current_menu","menu"]),
       ...mapState('one',["five_case"]),
       ...mapGetters(["main_width"])
     },
     methods:{
-      ...mapActions(["setCurrentMenu"])
+      ...mapActions(["setCurrentMenu","module16Init"])
     },
     mounted:function () {
-      console.log("参数："+this.$route.params.id);
-      let id = this.$route.params.id;
-      if (isNaN(id)) this.$router.push("/details5");
-      this.title = this.five_case[id].title;
-      this.current_details = this.five_case[id].details;
-      this.current_menu === undefined ? this.setCurrentMenu(5):{};
+      let that = this;
+      console.log("参数："+that.$route.params.id);
+      let id = that.$route.params.id;
+      console.log(isNaN(id));
+      if (isNaN(id)||id===undefined) that.$router.push("/details5");
+      if (that.menu.length===0){
+        this.axios("http://localhost:8080/module16").then(function (response) {
+          that.module16Init(response.data);
+        }).then(function () {
+          that.setCurrentMenu(4);
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }else{
+        that.title = that.five_case[id].title;
+        that.current_details = that.five_case[id].details;
+      }
+
+      // this.current_menu === undefined ? this.setCurrentMenu(4):{};
     }
   }
 </script>

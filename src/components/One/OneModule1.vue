@@ -1,18 +1,18 @@
 <template>
   <div id="one-module1" class="c-n-fs-c" :style="{width:main_width+'px'}">
-    <div id="m_title">
-      <div id="m_name">我们做什么</div>
-      <div id="m_style"><span>——</span> &nbsp;&nbsp; WHAT WE DO &nbsp;&nbsp; <span>——</span></div>
+    <div id="m_title" v-show="one_module1.length!==0">
+      <div id="m_name">{{modules.length!==0?modules[1].name:""}}</div>
+      <div id="m_style"><span v-show="modules.length!==0">——</span> &nbsp;&nbsp; {{modules.length!==0?modules[1].desc:""}} &nbsp;&nbsp; <span v-show="modules.length!==0">——</span></div>
     </div>
     <div id="module1_img" class="r-w-c-c">
       <div class="m1-img c-n-c-c"
            @mouseenter="currentImg=item"
            @mouseleave="currentImg=null"
-           v-for="(item,index) in module1_img"
-           :style="{width: main_width*0.4+'px',height: main_width*0.25+'px',backgroundImage:'url('+item+')'}">
+           v-for="(item,index) in one_module1"
+           :style="{width: main_width*0.4+'px',height: main_width*0.25+'px',backgroundImage:'url('+item.img+')'}">
         <div class="m1-img-inner c-n-c-c" :style="{width: main_width*0.4+'px',height: main_width*0.25+'px'}" v-show="item===currentImg">
-          <p>01 图片标题1</p>
-          <p>picture title 1</p>
+          <p>{{item.title}}</p>
+          <p>{{item.desc}}</p>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import {mapState,mapGetters} from "vuex"
+  import {mapState,mapGetters,mapActions} from "vuex"
 	export default {
 		name: "OneModule1",
     data(){
@@ -29,10 +29,22 @@
       }
     },
     computed:{
-      ...mapState('one',["module1_img"]),
+      ...mapState('one',["one_module1","modules"]),
       ...mapGetters(["main_width"]),
     },
+    mounted:function(){
+		  let that = this;
+		  if (that.one_module1.length===0){
+        this.axios("/module2").then(function (response) {
+          that.module2Init(response.data)
+        }).catch(function (response) {
+          console.log(response);
+        });
+      }
+
+    },
     methods:{
+      ...mapActions("one",["module2Init"]),
       mouseEnterImg(index){
         console.log(index);
       },
